@@ -8,8 +8,7 @@ This homework will assess your ability to use GitHub, organize projects, and app
 
 Make a GitHub account and populate your bio by including your research interests, place of work, location, professional webpage (or science-focused twitter account!). Here's an example [github.com/trvrb](https://github.com/trvrb/).
 
-(https://github.com/user-attachments/assets/a2b8a264-e226-434c-8e15-d83f9e95db84)
-
+[Problem 1](https://github.com/marygracelinsley)
 
 ## Problem 2
 
@@ -45,7 +44,7 @@ The first time you try doing this, you will get an error asking you to configure
 Use the URL of the GitHub repository you created above to configure the Remote.
 Now you should be able to push any further changes to your repository.
 
-(https://github.com/user-attachments/assets/cb57dc58-4738-4c69-9d1c-79ab1c440b82)
+[Problem 3](https://github.com/marygracelinsley/tfcb-homework01)
 
 
 ## Problem 4
@@ -56,7 +55,7 @@ This question assesses your ability to organize files and directories associated
 
 Organize files into a more consistent structure. Group images into a `images/` directory. Separate source code and data. Rename files to remove spaces and improve consistency. Commit changes and publish to your public GitHub repository.
 
-(https://github.com/user-attachments/assets/90d71474-3bdb-46af-a7eb-791e3013db9c)
+[Problem 4](https://github.com/marygracelinsley/tfcb-homework01)
 
 
 ## Problem 5
@@ -69,7 +68,7 @@ Create a file called `README.md` and populate with Markdown. Demonstrate headers
 
 Commit this file and publish to your public GitHub repository.
 
-(https://github.com/user-attachments/assets/0db2d0c2-5d48-40ef-bed9-3b401208032f)
+[Problem 5](https://github.com/marygracelinsley/tfcb-homework01/blob/main/README.md)
 
 
 ## Problem 6
@@ -84,5 +83,5 @@ Export this as a tab-delimited `.csv` text file with Unix line endings.
 
 Commit the modified `.xlsx` file and the `.csv` file and publish to your public GitHub repository.
 
-(https://github.com/user-attachments/assets/66f3ca14-0bec-47ad-8d07-1a2fcabffb6e)
+[Problem 6](https://github.com/marygracelinsley/tfcb-homework01/blob/main/data/survey_data.csv)
 
