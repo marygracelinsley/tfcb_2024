@@ -11,7 +11,7 @@ Replace the lines specified in _italics_ with your answers and save as a text fi
 
 Complete the interactive tutorial.
 
-_Did you hit any points of frustration, and if so, how could we improve the material to avoid that frustration?_
+I did not find the interactive tutorial frustrating. I feel like it was purposefully a bit vague which led me to researching what all the commands do on my own and learning. 
 
 
 ## Problem 1
@@ -52,7 +52,36 @@ sequence.gb<br>
 slides<br>
 vader.txt<br>
 
-_Paste your SCRIPT here (not the output)_
+import os
+import shutil
+
+username = os.getlogin()
+home_dir = os.path.expanduser('~')
+
+target_dir = os.path.join(home_dir, 'Desktop', 'tfcb_2023-main', 'lectures', 'lecture04')
+
+contents_str = ''
+
+if os.path.exists(target_dir):
+    directory_contents = os.listdir(target_dir)
+    contents_str = '\n'.join(directory_contents)
+else:
+    contents_str = 'Directory does not exist.'
+
+with open('question01.txt', 'w') as file:
+    file.write(f"My username is {username}\n")
+    file.write(f"My home directory is {home_dir}\n")
+    file.write("The contents of the tfcb_2023-main/lectures/lecture04/ directory are:\n")
+    file.write(contents_str + "\n")
+
+new_dir = 'homework02'
+os.makedirs(new_dir, exist_ok=True)
+shutil.move('question01.txt', os.path.join(new_dir, 'question01.txt'))
+
+with open(os.path.join(new_dir, 'question01.txt'), 'r') as file:
+    print(file.read())  # Output the content of the file
+
+print("File question01.txt has been created and moved to 'homework02'.")
 
 
 ## Problem 2
@@ -75,6 +104,26 @@ tfcb_2023/homeworks/homework02/list.txt
 
 You can make the contents of those files whatever you want (hint: slide 9... )
 
-_Paste your SCRIPT here (not the output)_
+import os
+
+home_dir = os.path.expanduser('~')
+base_dir = os.path.join(home_dir, 'Desktop', 'tfcb_2023-main', 'homeworks', 'homework02')
+list_file_path = os.path.join(base_dir, 'list.txt')
+new_dir = os.path.join(base_dir, 'question02')
+
+os.makedirs(new_dir, exist_ok=True)
+
+with open(list_file_path, 'r') as list_file:
+    numbers = [line.strip() for line in list_file.readlines()]
+
+for number in numbers:
+    file_name = f"file{number}.txt"
+    file_path = os.path.join(new_dir, file_name)
+    with open(file_path, 'w') as file:
+        file.write(f"This is the content of {file_name}.\n")
+        file.write("You can customize this content as needed.\n")
+
+print(f"Created {len(numbers)} files in {new_dir}.")
+
 
 
