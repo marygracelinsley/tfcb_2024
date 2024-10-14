@@ -54,34 +54,44 @@ vader.txt<br>
 
 import os
 import shutil
+import requests
+import getpass
 
-username = os.getlogin()
-home_dir = os.path.expanduser('~')
+github_username = "marygracelinsley"
+repo_name = "tfcb_2024"
+branch = "main"
+directory = "lectures/lecture04"
 
-target_dir = os.path.join(home_dir, 'Desktop', 'tfcb_2023-main', 'lectures', 'lecture04')
+url = f"https://api.github.com/repos/{github_username}/{repo_name}/contents/{directory}?ref={branch}"
 
-contents_str = ''
-
-if os.path.exists(target_dir):
-    directory_contents = os.listdir(target_dir)
-    contents_str = '\n'.join(directory_contents)
+response = requests.get(url)
+if response.status_code == 200:
+    files = response.json()
+    contents_str = '\n'.join(file['name'] for file in files)
 else:
-    contents_str = 'Directory does not exist.'
+    contents_str = "Directory does not exist or could not be fetched."
+
+username = getpass.getuser() 
+home_dir = os.path.expanduser('~')
 
 with open('question01.txt', 'w') as file:
     file.write(f"My username is {username}\n")
     file.write(f"My home directory is {home_dir}\n")
-    file.write("The contents of the tfcb_2023-main/lectures/lecture04/ directory are:\n")
+    file.write("The contents of the tfcb_2024/lectures/lecture04/ directory are:\n")
     file.write(contents_str + "\n")
 
-new_dir = 'homework02'
+desktop_dir = os.path.join(home_dir, 'Desktop')
+new_dir = os.path.join(desktop_dir, 'homework02')
+
+print(f"Attempting to create directory at: {new_dir}")
+
 os.makedirs(new_dir, exist_ok=True)
 shutil.move('question01.txt', os.path.join(new_dir, 'question01.txt'))
 
 with open(os.path.join(new_dir, 'question01.txt'), 'r') as file:
-    print(file.read())  # Output the content of the file
+    print(file.read())
 
-print("File question01.txt has been created and moved to 'homework02'.")
+print(f"File question01.txt has been created and moved to '{new_dir}'.")
 
 
 ## Problem 2
