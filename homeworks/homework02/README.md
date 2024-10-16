@@ -11,7 +11,7 @@ Replace the lines specified in _italics_ with your answers and save as a text fi
 
 Complete the interactive tutorial.
 
-I did not find the interactive tutorial frustrating. I feel like it was purposefully a bit vague which led me to researching what all the commands do on my own and learning. 
+The main problem I had was at the beginning I clicked on a link from the 01-firststeps folder (https://github.com/FredHutch/tfcb_2021/tree/main/lectures/lecture03#tutorial) that led me to the 2021 course page I and accidentally did most of the tutorial from there (which was slightly different). In the future, I would update this link so it doesn't do this anymore. Otherwise I thought the tutorial was helpful. 
 
 
 ## Problem 1
@@ -52,46 +52,33 @@ sequence.gb<br>
 slides<br>
 vader.txt<br>
 
-import os
-import shutil
-import requests
-import getpass
 
-github_username = "marygracelinsley"
-repo_name = "tfcb_2024"
-branch = "main"
-directory = "lectures/lecture04"
+Here is my script: 
 
-url = f"https://api.github.com/repos/{github_username}/{repo_name}/contents/{directory}?ref={branch}"
+#!/bin/bash
 
-response = requests.get(url)
-if response.status_code == 200:
-    files = response.json()
-    contents_str = '\n'.join(file['name'] for file in files)
-else:
-    contents_str = "Directory does not exist or could not be fetched."
+# get username and home directory
+username=$(whoami)
+homedir=$HOME
 
-username = getpass.getuser() 
-home_dir = os.path.expanduser('~')
+# create the question01 file
+output="question01.txt"
+echo "My username is $username" > $output
+echo "My home directory is $homedir" >> $output
 
-with open('question01.txt', 'w') as file:
-    file.write(f"My username is {username}\n")
-    file.write(f"My home directory is {home_dir}\n")
-    file.write("The contents of the tfcb_2024/lectures/lecture04/ directory are:\n")
-    file.write(contents_str + "\n")
+# add contents of lecture04 to question01 file
+target_dir="../../lectures/lecture04"
+echo "The contents of the $target_dir directory are" >> $output
+ls "$target_dir" >> $output
 
-desktop_dir = os.path.join(home_dir, 'Desktop')
-new_dir = os.path.join(desktop_dir, 'homework02')
+# create the homework02 directory
+mkdir -p homework02
 
-print(f"Attempting to create directory at: {new_dir}")
+# move question01 to homework02 directory
+mv $output homework02/
 
-os.makedirs(new_dir, exist_ok=True)
-shutil.move('question01.txt', os.path.join(new_dir, 'question01.txt'))
-
-with open(os.path.join(new_dir, 'question01.txt'), 'r') as file:
-    print(file.read())
-
-print(f"File question01.txt has been created and moved to '{new_dir}'.")
+# outut the contents of quesiton01
+cat homework02/question01.txt
 
 
 ## Problem 2
