@@ -1,4 +1,4 @@
-#!/bin/bash
+# to run type bash script01.sh
 
 # get username and home directory
 username=$(whoami)
